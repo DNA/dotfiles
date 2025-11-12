@@ -1,0 +1,21 @@
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_RUNTIME_DIR=$HOME/.runtime
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+export HISTFILE=$XDG_CACHE_HOME/zsh/history     # History filepath
+export HISTSIZE=10000                           # Maximum events for internal history
+export SAVEHIST=10000                           # Maximum events in history file
+
+export LESSHISTFILE=$XDG_STATE_HOME/.less_history
+export EDITOR=vim
+# export VISUAL="nvim"
+
+export SHELL_SESSIONS_DISABLE=1
+export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+
+export PATH="$HOME/.local/bin:$PATH"
+

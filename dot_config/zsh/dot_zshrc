@@ -1,0 +1,9 @@
+autoload -U compinit; compinit
+
+bindkey -e
+bindkey "^[[1;3D" backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;4D" beginning-of-line
+bindkey "^[[1;4C" end-of-line
+
+alias ll="ls -lha --color"
