@@ -1,0 +1,37 @@
+
+# Ignore chezmoi config file, as it is defined as a template
+.config/chezmoi
+
+# Ignore XDG non-config paths
+.cache
+.runtime
+.local
+
+# Ignore apps that does not allow to move config files
+.claude
+.codex
+
+# Ignore MacOS files
+.CFUserTextEncoding
+.DS_Store
+.Trash
+Desktop
+Documents
+Downloads
+Library
+Movies
+Music
+Pictures
+Public
+
+# Ignore personal directories on $HOME
+bt
+code
+
+# Ignore ZSH auto-generated files
+.config/zsh/.zcompdump
+.config/zsh/.zsh_history
+
+# Ignore sensitive files
+**/aws/credentials
+.ssh
