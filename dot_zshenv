@@ -1,21 +1,41 @@
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_RUNTIME_DIR=$HOME/.runtime
+# This config runs on all ZSH shells
+#
+# IMPORTANT: Keep here as clean as possible,
+# as it will impact all shels and scripts
 
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# Default XDG Paths to keep $HOME clean
+export XDG_DATA_HOME=$HOME/.local/share         # data files
+export XDG_STATE_HOME=$HOME/.local/state        # stateful data files
+export XDG_CONFIG_HOME=$HOME/.config            # configuration files
+export XDG_CACHE_HOME=$HOME/.cache              # non-essential (cached) data
+export XDG_RUNTIME_DIR=$HOME/.runtime           # runtime files and other file objects
 
+# ZSH Configuration
+## General
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"           # Root dir for all ZSH files
+
+# History
 export HISTFILE=$XDG_CACHE_HOME/zsh/history     # History filepath
 export HISTSIZE=10000                           # Maximum events for internal history
 export SAVEHIST=10000                           # Maximum events in history file
 
+
+# TODO: Cleanup from here down.
+
+# Enviroment configuration and other app definitions
 export LESSHISTFILE=$XDG_STATE_HOME/.less_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/.npmrc
 export EDITOR=vim
 # export VISUAL="nvim"
-
 export SHELL_SESSIONS_DISABLE=1
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
-
 export PATH="$HOME/.local/bin:$PATH"
 
+AWS_CONFIG_FILE=${XDG_CONFIG_HOME}/aws
+
+
+export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pem'
+
+export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmosai/llm/v1"
+export ANTHROPIC_MODEL="claude-3-7-sonnet-20250219"
+export ANTHROPIC_SMALL_FAST_MODEL="claude-3-5-haiku-20241022"

@@ -1,9 +1,20 @@
+# This config runs on any interactive shell
+#
+# This is the main place for interactive configuration, and
+# where probably most of your scripts will be defined.
+#
+
+# Auto load configs
 autoload -U compinit; compinit
 
-bindkey -e
-bindkey "^[[1;3D" backward-word
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;4D" beginning-of-line
-bindkey "^[[1;4C" end-of-line
+# Define keybindings
+bindkey -e                              # Start with Emacs pattern
+bindkey "^[[1;3D" backward-word         # Define opt + <-
+bindkey "^[[1;3C" forward-word          # Define opt + ->
+bindkey "^[[1;4D" beginning-of-line     # Define opt + <-
+bindkey "^[[1;4C" end-of-line           # Define opt + <-
 
 alias ll="ls -lha --color"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(mise activate zsh)"
