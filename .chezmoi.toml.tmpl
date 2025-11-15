@@ -1,1 +1,9 @@
 persistentState = "{{ env "XDG_STATE_HOME" }}/chezmoistate.boltdb"
+
+[data]
+name = "Leonardo Prado"
+{{- if eq .chezmoi.hostname "mika" }}
+email = "leonardoprado@gmail.com"
+{{ else }}
+email = "leoprado@paypal.com"
+{{ end -}}
