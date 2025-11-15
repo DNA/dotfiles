@@ -14,7 +14,9 @@ bindkey "^[[1;3C" forward-word          # Define opt + ->
 bindkey "^[[1;4D" beginning-of-line     # Define opt + <-
 bindkey "^[[1;4C" end-of-line           # Define opt + <-
 
-alias ll="ls -lha --color"
+# Initialize shell applications
+command -v brew     &>/dev/null && eval "$(brew shellenv)"
+command -v mise     &>/dev/null && eval "$(mise activate zsh)"
+command -v starship &>/dev/null && eval "$(starship init zsh)"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(mise activate zsh)"
+alias ll="ls -lha --color"
