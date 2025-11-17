@@ -36,3 +36,6 @@ export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmos
 export ANTHROPIC_MODEL="claude-3-7-sonnet-20250219"
 export ANTHROPIC_SMALL_FAST_MODEL="claude-3-5-haiku-20241022"
 export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
+
+# Source private file with sensible data
+[[ -f $ZDOTDIR/keys-and-tokens.zsh ]] && . $ZDOTDIR/keys-and-tokens.zsh
