@@ -1,0 +1,155 @@
+# lazygit --use-config-file="$HOME/.base_lg_conf,$HOME/.light_theme_lg_conf"
+# or
+# LG_CONFIG_FILE="$HOME/.base_lg_conf,$HOME/.light_theme_lg_conf" lazygit
+
+# Config relating to the Lazygit UI
+gui:
+  # If true, increase the height of the focused side window; creating an accordion effect.
+  expandFocusedSidePanel: true
+
+  # The weight of the expanded side panel, relative to the other panels. 2 means
+  # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
+  expandedSidePanelWeight: 2
+
+  # If true, display the files in the file views as a tree. If false, display the files as a flat list.
+  # This can be toggled from within Lazygit with the '~' key, but that will not change the default.
+  showFileTree: false
+
+  # If true, show the number of lines changed per file in the Files view
+  showNumstatInFilesView: true
+
+  # If true, show the command log
+  showCommandLog: false
+
+  # Nerd fonts version to use.
+  # One of: '2' | '3' | empty string (default)
+  # If empty, do not show icons.
+  nerdFontsVersion: "3"
+
+  # If true (default), file icons are shown in the file views. Only relevant if NerdFontsVersion is not empty.
+  showFileIcons: true
+
+  # Config relating to colors and styles.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
+  theme:
+    activeBorderColor:
+      - "#f5c2e7"
+      - bold
+    inactiveBorderColor:
+      - "#a6adc8"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#f5c2e7"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"
+
+  authorColors:
+    "*": "#b4befe"
+
+# Config relating to git
+git:
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
+  paging:
+    externalDiffCommand: difft --color=always --display=inline --syntax-highlight=off --override="*.blade.php:text"
+    # externalDiffCommand: difft --color=always --display=inline
+
+    colorArg: always
+    # pager: delta --dark --paging=never
+    # pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
+  parseEmoji: true
+
+# Periodic update checks
+update:
+  method: never # Brew takes care of it
+
+# Background refreshes
+refresher:
+  # File/submodule refresh interval in seconds.
+  # Auto-refresh can be disabled via option 'git.autoRefresh'.
+  refreshInterval: 10
+
+  # Re-fetch interval in seconds.
+  # Auto-fetch can be disabled via option 'git.autoFetch'.
+  fetchInterval: 60
+
+# If true, show a confirmation popup before quitting Lazygit
+confirmOnQuit: false
+
+# If true, exit Lazygit when the user presses escape in a context where there is nothing to cancel/close
+quitOnTopLevelReturn: false
+
+# Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
+os:
+  # Command for editing a file. Should contain "{{filename}}".
+  edit: ""
+
+  # Command for editing a file at a given line number. Should contain
+  # "{{filename}}", and may optionally contain "{{line}}".
+  editAtLine: ""
+
+  # Same as EditAtLine, except that the command needs to wait until the
+  # window is closed.
+  editAtLineAndWait: ""
+
+  # For opening a directory in an editor
+  openDirInEditor: ""
+
+  # A built-in preset that sets all of the above settings. Supported presets
+  # are defined in the getPreset function in editor_presets.go.
+  editPreset: "zed"
+
+  # Command for opening a file, as if the file is double-clicked. Should
+  # contain "{{filename}}", but doesn't support "{{line}}".
+  open: ""
+
+  # Command for opening a link. Should contain "{{link}}".
+  openLink: ""
+
+  # EditCommand is the command for editing a file.
+  # Deprecated: use Edit instead. Note that semantics are different:
+  # EditCommand is just the command itself, whereas Edit contains a
+  # "{{filename}}" variable.
+  editCommand: ""
+
+  # EditCommandTemplate is the command template for editing a file
+  # Deprecated: use EditAtLine instead.
+  editCommandTemplate: ""
+
+  # OpenCommand is the command for opening a file
+  # Deprecated: use Open instead.
+  openCommand: ""
+
+  # OpenLinkCommand is the command for opening a link
+  # Deprecated: use OpenLink instead.
+  openLinkCommand: ""
+
+  # CopyToClipboardCmd is the command for copying to clipboard.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-and-pasting-from-clipboard
+  copyToClipboardCmd: echo {{text}} | pbcopy
+
+  # ReadFromClipboardCmd is the command for reading the clipboard.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-and-pasting-from-clipboard
+  readFromClipboardCmd: "pbpaste"
+
+# If true, don't display introductory popups upon opening Lazygit.
+disableStartupPopups: false
+
+# What to do when opening Lazygit outside of a git repo.
+# - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
+# - 'create': initialize a new repo
+# - 'skip': open most recent repo
+# - 'quit': exit Lazygit
+notARepository: prompt
+
+# If true, display a confirmation when subprocess terminates. This allows you to view the output of the subprocess before returning to Lazygit.
+promptToReturnFromSubprocess: true

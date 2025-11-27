@@ -1,0 +1,229 @@
+{
+  // Zed settings
+  //
+  // For information on how to configure Zed, see the Zed//zed.dev/docs/configuring-zed
+  //
+  // To see all of Zed's default settings without changing your
+  // custom settings, run `zed: open default settings` from the
+  // command palette (cmd-shift-p / ctrl-shift-p)
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "context_servers": {
+    "laravel-boost": {
+      "source": "custom",
+      "enabled": true,
+      "command": "php",
+      "args": [
+        "artisan",
+        "boost:mcp"
+      ],
+      "env": {}
+    }
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "use_modifier_to_send": true,
+    "play_sound_when_agent_done": true,
+    "enable_feedback": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "indent_size": 15.0,
+    "button": true
+  },
+  "project_panel": {
+    "hide_root": true
+  },
+  "active_pane_modifiers": {
+    "border_size": 0.0,
+    "inactive_opacity": 0.3
+  },
+  "centered_layout": {},
+  "preview_tabs": {},
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "activate_on_close": "neighbour",
+    "close_position": "left",
+    "file_icons": true,
+    "git_status": true
+  },
+  "title_bar": {
+    "show_branch_icon": true
+  },
+  "search": {
+    "button": false
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "prettier": {
+    "allowed": false
+  },
+  "go_to_definition_fallback": "none",
+  "lsp_document_colors": "border",
+  "inlay_hints": {
+    "enabled": true,
+    // "show_background": true
+    "show_parameter_hints": false
+  },
+  "always_treat_brackets_as_autoclosed": true,
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "enabled": true
+  },
+  "soft_wrap": "bounded",
+  "preferred_line_length": 100,
+  "auto_indent_on_paste": false,
+  "gutter": {
+    "min_line_number_digits": 3
+  },
+  "unnecessary_code_fade": 0.7,
+  "ui_font_weight": 300.0,
+  "ui_font_size": 14.0,
+  "ui_font_family": "Monaspace Neon Var",
+  "buffer_font_weight": 300,
+  "buffer_font_size": 13.0,
+  "buffer_font_family": "Monaspace Neon Var",
+  "theme": "Catppuccin Mocha",
+  "icon_theme": "Catppuccin Mocha",
+  "buffer_line_height": "comfortable",
+  "buffer_font_features": {
+    "calt": true,
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss04": true,
+    "ss05": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+    "ss09": true,
+    "ss10": true,
+    "liga": true,
+    "cv32": 1,
+    "cv61": 1,
+    "cv62": 1
+  },
+  "ui_font_features": {
+    "calt": true,
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss04": true,
+    "ss05": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+    "ss09": true,
+    "ss10": true,
+    "liga": true,
+    "cv32": 1,
+    "cv61": 1,
+    "cv62": 1
+  },
+  "wrap_guides": [
+    72,
+    100
+  ],
+  "experimental.theme_overrides": {
+    "border": "#00000000",
+    "scrollbar.thumb.border": "#00000000",
+    "scrollbar.track.border": "#00000000",
+    "border.variant": "#00000000",
+    "panel.focused_border": "#00000000",
+    "border.disabled": "#ff9900",
+    "border.focused": "#ff9900",
+    "border.selected": "#ff9900",
+    "border.transparent": "#ff9900",
+    "conflict.border": "#ff9900",
+    "created.border": "#ff9900",
+    "deleted.border": "#ff9900",
+    "error.border": "#ff9900",
+    "hidden.border": "#ff9900",
+    "hint.border": "#ff9900",
+    "ignored.border": "#ff9900",
+    "info.border": "#ff9900",
+    "modified.border": "#ff9900",
+    "pane.focused_border": "#ff9900",
+    "pane_group.border": "#ff9900",
+    "predictive.border": "#ff9900",
+    "renamed.border": "#ff9900",
+    "success.border": "#ff9900",
+    "unreachable.border": "#ff9900",
+    "warning.border": "#ff9900"
+  },
+  "languages": {
+    "Rust": {
+      "show_edit_predictions": false
+    },
+    "CSS": {
+      "language_servers": [
+        "tailwindcss-language-server",
+        "!vscode-css-language-server",
+        "..."
+      ]
+    },
+    "PHP": {
+      "prettier": {
+        "allowed": false
+      },
+      // "use_on_type_format": false,
+      // "formatter": null,
+      "formatter": {
+        "external": {
+          // "command": "cat"
+          "command": "./vendor/bin/pint"
+        }
+      },
+      "language_servers": [
+        "phptools",
+        "!phpactor",
+        "!intelephense",
+        "..."
+      ]
+    }
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "diagnostics": {
+          "experimental": {
+            "enable": true
+          }
+        },
+        // To disable the checking entirely
+        // (ignores all cargo and check settings below)
+        // "checkOnSave": false,
+        // To check the `lib` target only.
+        "cargo": {
+          "allTargets": false
+        },
+        // Use `-p` instead of `--workspace` for cargo check
+        "check": {
+          "workspace": false
+        }
+      }
+    },
+    "phptools": {
+      "initialization_options": {
+        "php.problems.exclude": {
+          "/": [
+            6602,
+            6615
+          ]
+        }
+      }
+    }
+  }
+}
