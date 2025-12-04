@@ -9,6 +9,8 @@
 
 # Ignore apps that does not allow to move config files
 .claude
+.claude.json
+.claude.json.backup
 .codex
 
 # Ignore MacOS files
@@ -30,9 +32,14 @@ code
 
 # Ignore ZSH auto-generated files
 .config/zsh/.zcompdump
+.config/zsh/.zcompcache
 .config/zsh/.zsh_history
 
 # Ignore sensitive files
 **/aws/credentials
 .ssh
 **/keys-and-tokens.zsh
+
+# Ignore non config files
+**/**/*.mdb
+**/*backup*

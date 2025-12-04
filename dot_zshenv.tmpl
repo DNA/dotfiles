@@ -19,14 +19,25 @@ export HISTFILE=$XDG_CACHE_HOME/zsh/history     # History filepath
 export HISTSIZE=10000                           # Maximum events for internal history
 export SAVEHIST=10000                           # Maximum events in history file
 
+setopt EXTENDED_HISTORY                         # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY                            # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST                   # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS                         # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS                     # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS                        # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE                        # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS                        # Do not write a duplicate event to the history file.
+
 #
 # $HOME Cleanup
 # Change the default location of many config files, keeping the home directory clean
 #
 export LESSHISTFILE=$XDG_STATE_HOME/less_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+{{ if .isWork -}}
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME}/aws/config
 export AWS_CREDENTIAL_FILE=${XDG_CONFIG_HOME}/aws/credentials
+{{ end -}}
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
 #
@@ -35,12 +46,16 @@ export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 export EDITOR=vim
 # export VISUAL="nvim"
 export SHELL_SESSIONS_DISABLE=1
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
+
+{{ if .isWork -}}
+# Work related variables
 export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pem'
 export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmosai/llm/v1"
 export ANTHROPIC_MODEL="claude-3-7-sonnet-20250219"
 export ANTHROPIC_SMALL_FAST_MODEL="claude-3-5-haiku-20241022"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
+{{ end -}}
 
 # Source private file with sensible data
 [[ -f $ZDOTDIR/keys-and-tokens.zsh ]] && . $ZDOTDIR/keys-and-tokens.zsh

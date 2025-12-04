@@ -5,11 +5,17 @@
 [diff]
 	colorMoved = plain
 
-{{- if .isWork }}
+[http]
+    postBuffer = 524288000
+
+{{ if .isWork -}}
 [credential]
-    helper =
     helper = /usr/local/share/gcm-core/git-credential-manager
 
 [credential "https://dev.azure.com"]
-       useHttpPath = true
-{{ end }}
+    useHttpPath = true
+
+# Enforce HTTPS
+[url "https://github.com/"]
+    insteadOf = git@github.com:
+{{- end }}

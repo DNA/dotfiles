@@ -56,6 +56,17 @@ format = '[\[$symbol$version\]]($style)'
 version_format = '$major.$minor'
 symbol = '🐘'
 
+[python]
+format = '[\[$symbol$version\]]($style)'
+version_format = '$major.$minor'
+symbol = '🐍'
+style = "green bold"
+
+[ruby]
+format = '[\[$symbol$version\]]($style)'
+version_format = '$major.$minor'
+symbol = '💎'
+
 [time]
 format = "[⏲ $time]($style)"
 time_format = "%R"

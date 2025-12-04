@@ -5,7 +5,7 @@ local config = {
     -- Misc configuration
     use_fancy_tab_bar = false,
     hide_tab_bar_if_only_one_tab = true,
-    front_end = "WebGpu",
+
     -- Font configuration
     font_size = 12,
     cell_width = 1.1,
@@ -39,20 +39,10 @@ local config = {
 
     -- Color configuration
     color_scheme = "Catppuccin Mocha (DNA)",
-    -- colors = {
-    --     tab_bar = {
-    --         background = "#0b0022", -- The color of the strip that goes along the top of the window
-
-    --         active_tab = {
-    --             bg_color = "#2b2042", -- The color of the background area for the tab
-    --             fg_color = "#c0c0c0", -- The color of the text for the tab
-    --         },
-    --     },
-    -- },
 
     inactive_pane_hsb = {
-      saturation = 0.5,
-      brightness = 0.3,
+        saturation = 0.5,
+        brightness = 0.3,
     },
 
     -- Window and background configuration
@@ -80,13 +70,40 @@ local config = {
     -- },
 
     -- Key bindings
-    use_dead_keys = false,
     keys = {
-        { key = "P",          mods = "CTRL",           action = wezterm.action.ActivateCommandPalette },
-        { key = "LeftArrow",  mods = "OPT",            action = wezterm.action({ SendString = "\x1bb" }) },
-        { key = "RightArrow", mods = "OPT",            action = wezterm.action({ SendString = "\x1bf" }) },
+        -- Better split panes commands
         { key = "|",          mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
         { key = "_",          mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+        -- Activate Shift + enter for newline on Claude Code
+        { key = "Enter",      mods = "SHIFT",          action = wezterm.action { SendString = "\x1b\r" } },
+
+        -- Move between words with option +  arrows
+        { key = "LeftArrow",  mods = "OPT",            action = wezterm.action({ SendKey = { mods = 'OPT', key = 'b' } }) },
+        { key = "RightArrow", mods = "OPT",            action = wezterm.action({ SendKey = { mods = 'OPT', key = 'f' } }) },
+
+        -- Use ^/ instead of ^a on tmux
+        { key = "/",          mods = "CTRL",           action = wezterm.action({ SendKey = { mods = 'CTRL', key = 'a' } }) },
+
+    },
+
+    -- The following keys change click to ctrl+click on links
+    mouse_bindings = {
+        {
+            event = { Up = { streak = 1, button = "Left" } },
+            mods = "NONE",
+            action = wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'
+        },
+        {
+            event = { Up = { streak = 1, button = "Left" } },
+            mods = "CTRL",
+            action = wezterm.action.OpenLinkAtMouseCursor,
+        },
+        {
+            event = { Down = { streak = 1, button = "Left" } },
+            mods = "CTRL",
+            action = wezterm.action.Nop,
+        },
     },
 }
 

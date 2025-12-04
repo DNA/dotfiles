@@ -1,0 +1,10 @@
+[install]
+{{ if .isWork -}}
+registry = "https://npm.dev.paypalinc.com/"
+cafile = "/usr/local/etc/openssl/certs/combined_cacerts.pem"
+{{ end -}}
+# dir = "~/.bun/install/cache"
+# globalBinDir = "~/.bun/bin"
+
+[run]
+bun = true

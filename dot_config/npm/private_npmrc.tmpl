@@ -1,9 +1,9 @@
 cache=${XDG_CACHE_HOME}/npm/
 
-{{ if .isWork }}
+{{ if .isWork -}}
 scope=@paypalcorp
 cafile=/usr/local/etc/openssl/certs/combined_cacerts.pem
 registry=https://npm.dev.paypalinc.com/
 @paypalcorp:registry=https://npm.dev.paypalinc.com/
 @anthropic-ai:registry=https://npm.dev.paypalinc.com/
-{{ end }}
+{{ end -}}

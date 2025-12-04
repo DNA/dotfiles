@@ -4,9 +4,6 @@
 # where probably most of your scripts will be defined.
 #
 
-# Auto load configs
-autoload -U compinit; compinit
-
 # Define keybindings
 bindkey -e                              # Start with Emacs pattern
 bindkey "^[[1;3D" backward-word         # Define opt + <-
@@ -18,5 +15,9 @@ bindkey "^[[1;4C" end-of-line           # Define opt + <-
 command -v brew     &>/dev/null && eval "$(brew shellenv)"
 command -v mise     &>/dev/null && eval "$(mise activate zsh)"
 command -v starship &>/dev/null && eval "$(starship init zsh)"
+command -v atuin    &>/dev/null && eval "$(atuin init zsh)"
 
 alias ll="ls -lha --color"
+
+# Auto load configs
+autoload -U compinit; compinit

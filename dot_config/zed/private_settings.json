@@ -11,7 +11,6 @@
   },
   "context_servers": {
     "laravel-boost": {
-      "source": "custom",
       "enabled": true,
       "command": "php",
       "args": [
