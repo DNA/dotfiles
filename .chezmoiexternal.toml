@@ -1,0 +1,5 @@
+[".config/atuin/themes"]
+type = "archive"
+url = "https://DNA@github.com/catppuccin/atuin/archive/main.tar.gz"
+stripComponents = 3
+include = ["*/themes/**"]

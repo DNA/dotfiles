@@ -15,7 +15,7 @@ bindkey "^[[1;4C" end-of-line           # Define opt + <-
 command -v brew     &>/dev/null && eval "$(brew shellenv)"
 command -v mise     &>/dev/null && eval "$(mise activate zsh)"
 command -v starship &>/dev/null && eval "$(starship init zsh)"
-command -v atuin    &>/dev/null && eval "$(atuin init zsh)"
+command -v atuin    &>/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
 alias ll="ls -lha --color"
 
