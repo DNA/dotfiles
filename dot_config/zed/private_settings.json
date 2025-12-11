@@ -163,6 +163,35 @@
     "warning.border": "#ff9900"
   },
   "languages": {
+    "Ruby": {
+      "language_servers": [
+        "ruby-lsp",
+        "rubocop",
+        "!solargraph",
+        "!sorbet",
+        "!steep",
+        "..."
+      ]
+    },
+    "HTML+ERB": {
+      "language_servers": [
+        "herb",
+        "ruby-lsp",
+        "..."
+      ]
+    },
+    "JS+ERB": {
+      "language_servers": [
+        "ruby-lsp",
+        "..."
+      ]
+    },
+    "YAML+ERB": {
+      "language_servers": [
+        "ruby-lsp",
+        "..."
+      ]
+    },
     "Rust": {
       "show_edit_predictions": false
     },
@@ -194,6 +223,13 @@
     }
   },
   "lsp": {
+    "rubocop": {
+      "initialization_options": {
+        "safeAutocorrect": false,
+        "lintMode": true,
+        "layoutMode": true
+      }
+    },
     "rust-analyzer": {
       "initialization_options": {
         "diagnostics": {
