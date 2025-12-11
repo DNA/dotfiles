@@ -32,12 +32,16 @@ setopt HIST_SAVE_NO_DUPS                        # Do not write a duplicate event
 # $HOME Cleanup
 # Change the default location of many config files, keeping the home directory clean
 #
-export LESSHISTFILE=$XDG_STATE_HOME/less_history
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 {{ if .isWork -}}
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME}/aws/config
-export AWS_CREDENTIAL_FILE=${XDG_CONFIG_HOME}/aws/credentials
+export AWS_SHARED_CREDENTIAL_FILE=${XDG_CONFIG_HOME}/aws/credentials
 {{ end -}}
+export BUNDLE_USER_CONFIG ~/.config/bundle
+export BUNDLE_USER_CACHE ~/.cache/bundle
+export BUNDLE_USER_PLUGIN ~/.local/share/bundle/plugins
+export GEMRC ~/.config/gem/
+export LESSHISTFILE=$XDG_STATE_HOME/less_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
 #
@@ -53,8 +57,7 @@ export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
 # Work related variables
 export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pem'
 export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmosai/llm/v1"
-export ANTHROPIC_MODEL="claude-3-7-sonnet-20250219"
-export ANTHROPIC_SMALL_FAST_MODEL="claude-3-5-haiku-20241022"
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
 {{ end -}}
 
 # Source private file with sensible data

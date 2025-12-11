@@ -17,7 +17,10 @@ command -v mise     &>/dev/null && eval "$(mise activate zsh)"
 command -v starship &>/dev/null && eval "$(starship init zsh)"
 command -v atuin    &>/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
+WORDCHARS=${WORDCHARS//\/}
+
 alias ll="ls -lha --color"
+alias cm="chezmoi"
 
 # Auto load configs
 autoload -U compinit; compinit
