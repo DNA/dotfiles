@@ -36,10 +36,10 @@ setopt HIST_SAVE_NO_DUPS                        # Do not write a duplicate event
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME}/aws/config
 export AWS_SHARED_CREDENTIAL_FILE=${XDG_CONFIG_HOME}/aws/credentials
 {{ end -}}
-export BUNDLE_USER_CONFIG ~/.config/bundle
-export BUNDLE_USER_CACHE ~/.cache/bundle
-export BUNDLE_USER_PLUGIN ~/.local/share/bundle/plugins
-export GEMRC ~/.config/gem/
+export BUNDLE_USER_CONFIG=~/.config/bundle/config
+export BUNDLE_USER_CACHE=~/.cache/bundle
+export BUNDLE_USER_PLUGIN=~/.local/share/bundle/plugins
+export GEMRC=~/.config/gem/gemrc
 export LESSHISTFILE=$XDG_STATE_HOME/less_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
@@ -52,6 +52,7 @@ export EDITOR=vim
 export SHELL_SESSIONS_DISABLE=1
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
+export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 
 {{ if .isWork -}}
 # Work related variables
@@ -59,6 +60,14 @@ export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pe
 export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmosai/llm/v1"
 export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
 {{ end -}}
+
+#
+# Define special named directories for easy access
+#
+hash -d xc="$XDG_CONFIG_HOME"
+hash -d co="$HOME/code"
+hash -d code="$HOME/code"
+hash -d arbiter="$HOME/arbiter"
 
 # Source private file with sensible data
 [[ -f $ZDOTDIR/keys-and-tokens.zsh ]] && . $ZDOTDIR/keys-and-tokens.zsh

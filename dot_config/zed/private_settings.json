@@ -10,6 +10,12 @@
     "mode": "subtle"
   },
   "context_servers": {
+    "rails-mcp-server": {
+      "enabled": true,
+      "command": "rails-mcp-server",
+      "args": [],
+      "env": {}
+    },
     "laravel-boost": {
       "enabled": true,
       "command": "php",

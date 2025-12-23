@@ -19,7 +19,12 @@ command -v atuin    &>/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
 WORDCHARS=${WORDCHARS//\/}
 
-alias ll="ls -lha --color"
+if command -v eza &>/dev/null; then
+    alias ll="eza -la --icons=always --color-scale-mode=gradient --group-directories-first --smart-group --changed --git --time-style=long-iso"
+else
+    alias ll="ls -lha --color"
+fi
+
 alias cm="chezmoi"
 
 # Auto load configs

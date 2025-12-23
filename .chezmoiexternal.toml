@@ -3,3 +3,8 @@ type = "archive"
 url = "https://DNA@github.com/catppuccin/atuin/archive/main.tar.gz"
 stripComponents = 3
 include = ["*/themes/**"]
+
+[".config/eza/theme.yml"]
+type = "file"
+url = "https://github.com/catppuccin/eza/raw/refs/heads/main/themes/mocha/catppuccin-mocha-pink.yml"
+refreshPeriod = "24h"
