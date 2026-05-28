@@ -1,0 +1,74 @@
+# This config runs on all ZSH shells
+#
+# IMPORTANT: Keep here as clean as possible,
+# as it will impact all shels and scripts
+
+# Default XDG Paths to keep $HOME clean
+export XDG_DATA_HOME=$HOME/.local/share         # data files
+export XDG_STATE_HOME=$HOME/.local/state        # stateful data files
+export XDG_CONFIG_HOME=$HOME/.config            # configuration files
+export XDG_CACHE_HOME=$HOME/.cache              # non-essential (cached) data
+export XDG_RUNTIME_DIR=$HOME/.runtime           # runtime files and other file objects
+
+# ZSH Configuration
+## General
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"           # Root dir for all ZSH files
+
+# History
+export HISTFILE=$XDG_CACHE_HOME/zsh/history     # History filepath
+export HISTSIZE=10000                           # Maximum events for internal history
+export SAVEHIST=10000                           # Maximum events in history file
+
+setopt EXTENDED_HISTORY                         # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY                            # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST                   # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS                         # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS                     # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS                        # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE                        # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS                        # Do not write a duplicate event to the history file.
+
+#
+# $HOME Cleanup
+# Change the default location of many config files, keeping the home directory clean
+#
+{{ if .isWork -}}
+export AWS_CONFIG_FILE=${XDG_CONFIG_HOME}/aws/config
+export AWS_SHARED_CREDENTIALS_FILE=${XDG_CONFIG_HOME}/aws/credentials
+{{ end -}}
+export BUNDLE_USER_CONFIG=~/.config/bundle/config
+export BUNDLE_USER_CACHE=~/.cache/bundle
+export BUNDLE_USER_PLUGIN=~/.local/share/bundle/plugins
+export GEMRC=~/.config/gem/gemrc
+export LESSHISTFILE=$XDG_STATE_HOME/less_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+
+#
+# TODO: Cleanup from here down.
+#
+export EDITOR=vim
+# export VISUAL="nvim"
+export SHELL_SESSIONS_DISABLE=1
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$XDG_CONFIG_HOME/composer/vendor/bin:$PATH"
+export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
+
+{{ if .isWork -}}
+# Work related variables
+export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pem'
+export SSL_CERT_FILE=$NODE_EXTRA_CA_CERTS
+export ANTHROPIC_BASE_URL="https://aiplatform.dev51.cbf.dev.paypalinc.com/cosmosai/llm/v1"
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
+{{ end -}}
+
+#
+# Define special named directories for easy access
+#
+hash -d xc="$XDG_CONFIG_HOME"
+hash -d co="$HOME/code"
+hash -d code="$HOME/code"
+hash -d arbiter="$HOME/arbiter"
+
+# Source private file with sensible data
+[[ -f $ZDOTDIR/keys-and-tokens.zsh ]] && . $ZDOTDIR/keys-and-tokens.zsh

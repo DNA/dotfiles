@@ -1,0 +1,6 @@
+# This config runs on any login shell, BEFORE .zshrc
+#
+# IMPORTANT: As this also run on non-interactive login shells
+# (e.g., `ssh -C command`), don't place code here related to
+# ZLE, prompts, completions and the like.
+#

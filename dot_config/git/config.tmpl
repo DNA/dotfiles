@@ -1,0 +1,24 @@
+[user]
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
+
+[diff]
+	colorMoved = plain
+
+[http]
+    postBuffer = 524288000
+
+[alias]
+    log1 = log --oneline
+
+{{ if .isWork -}}
+[credential]
+    helper = /usr/local/share/gcm-core/git-credential-manager
+
+[credential "https://dev.azure.com"]
+    useHttpPath = true
+
+# Enforce HTTPS
+[url "https://github.com/"]
+    insteadOf = git@github.com:
+{{- end }}
