@@ -1,22 +1,24 @@
 # Future Work
 
-## Encryption & Privacy Audit
+## Encryption & Privacy Audit — COMPLETED 2026-06-07
 
-The source repo is currently public. The `private_` chezmoi prefix controls
-destination file permissions only — it does NOT encrypt source content in git.
+**Audit result: repo is clean. No encryption or private-repo migration needed.**
 
-Files to audit for sensitive content that may warrant `age` encryption or
-moving to a private repo:
+All `private_*` files were inspected. No API keys, auth tokens, PEM-encoded keys,
+or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
+`aws/credentials`.
 
-- `dot_config/npm/private_npmrc.tmpl` — may contain auth tokens or registry credentials
-- `private_dot_ssh/` — SSH config; verify no private keys are committed
-- Any other `private_*` files added in the future
+### Disposition of `private_` prefixes
 
-Resolution options (pick one per file):
-1. Encrypt with `chezmoi add --encrypt <target>` (requires `age` setup)
-2. Move repo to private (`gh repo edit DNA/dotfiles --visibility private`)
-3. Confirm file contains no secrets and remove the `private_` prefix if
-   permission-sensitivity is the only concern
+**Kept** (permission-sensitive even if currently credential-free):
+- `dot_config/npm/private_npmrc.tmpl` — npm registry config; may hold auth tokens in future
+- `dot_config/aws/private_config.tmpl` — AWS config; credentials may be added later
+- `dot_config/gh/private_config.yml.tmpl` — gh CLI; stores OAuth tokens
+- `dot_config/gh/private_hosts.yml.tmpl` — gh CLI hosts; stores OAuth tokens
+
+**Removed** (no sensitive content, no future credential risk):
+- `dot_config/zed/settings.json` (was `private_settings.json`) — editor prefs only
+- `dot_config/karabiner/karabiner.json` (was `private_karabiner/private_karabiner.json`) — keyboard remapping only
 
 ---
 
