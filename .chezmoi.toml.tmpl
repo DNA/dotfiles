@@ -1,4 +1,5 @@
 persistentState = "{{ env "XDG_STATE_HOME" }}/chezmoistate.boltdb"
+encryption = "age"
 
 [data]
 name = "Leonardo Prado"
@@ -12,3 +13,7 @@ email = "leoprado@paypal.com"
 isPersonal = false
 isWork = true
 {{ end -}}
+
+[age]
+identity = "~/.config/chezmoi/key.txt"
+recipient = "age1fmxqh5nlalcskfqhz0pc8z4lekc90n40vyw24f5mcx2p3zyw6ayqkydtq7"

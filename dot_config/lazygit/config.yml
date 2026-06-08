@@ -49,15 +49,14 @@ gui:
 # Config relating to git
 git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
-  pagers:
-    - externalDiffCommand: difft --color=always --display=inline --override="*.blade.php:text"
-      # externalDiffCommand: difft --color=always --display=inline
+#  pagers:
+#    - externalDiffCommand: difft --color=always --display=inline --override="*.blade.php:text"
+#      # externalDiffCommand: difft --color=always --display=inline
+#
+#      colorArg: always
+#      # pager: delta --dark --paging=never
+#      # pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
-      colorArg: always
-      # pager: delta --dark --paging=never
-      # pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-  # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
-  parseEmoji: true
 # Periodic update checks
 update:
   method: never # Brew takes care of it

@@ -1,0 +1,10 @@
+Include /Users/leoprado/.config/colima/ssh_config
+
+Host *
+  IgnoreUnknown UseRoaming,AddKeysToAgent,UseKeychain
+  Compression yes
+  ServerAliveInterval 60
+  UseRoaming no
+  AddKeysToAgent no
+  UseKeychain yes
+

@@ -35,10 +35,6 @@ code
 .config/zsh/.zcompcache
 .config/zsh/.zsh_history
 
-# Ignore sensitive files
-**/aws/credentials
-.ssh
-**/keys-and-tokens.zsh
 
 # Ignore non config files
 **/**/*.mdb
