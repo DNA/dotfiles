@@ -24,32 +24,23 @@ or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
 
 ## Medium Priority — $HOME Cleanup
 
-### Delete legacy shell files
-- `~/.bash_profile` — zsh-only machine; content already covered by `dot_zshenv.tmpl`. Verify nothing invokes bash as login shell, then delete.
-- `~/.profile` — same situation. Merge any unique content into `dot_zshenv.tmpl`, then delete.
+### ~~Delete legacy shell files~~ — COMPLETED 2026-06-08
+- Deleted `~/.bash_profile` and `~/.profile`; all content was already covered by `encrypted_dot_zshenv.tmpl`.
 
-### Relocate Cargo + Rustup (do together, atomically)
-- Add `export CARGO_HOME="$XDG_DATA_HOME/cargo"` to `dot_zshenv.tmpl`
-- Add `export RUSTUP_HOME="$XDG_DATA_HOME/rustup"` to `dot_zshenv.tmpl`
-- Move `~/.cargo/` → `~/.local/share/cargo/`
-- Move `~/.rustup/` → `~/.local/share/rustup/`
-- Update `PATH` to include new `$CARGO_HOME/bin`
+### ~~Relocate Cargo + Rustup~~ — COMPLETED 2026-06-08
+- Added `CARGO_HOME`, `RUSTUP_HOME` to `encrypted_dot_zshenv.tmpl`; moved dirs to `~/.local/share/`; added `$CARGO_HOME/bin` to `PATH`.
 
-### Relocate Bun
-- Add `export BUN_INSTALL="$XDG_DATA_HOME/bun"` to `dot_zshenv.tmpl`
-- Move `~/.bun/` → `~/.local/share/bun/` (or reinstall bun pointing to new path)
-- Update `PATH`
+### ~~Relocate Bun~~ — RESOLVED 2026-06-08
+- Bun is managed by mise (not a native install); `~/.bun/` was empty and removed.
+- Fixed a bug: wrong `PATH="$XDG_CACHE_HOME/.bun/bin:$PATH"` line in zshenv was removed.
 
-### Add Docker config redirect
-- Add `export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"` to `dot_zshenv.tmpl`
-- Migrate `~/.docker/config.json` and `~/.docker/contexts/` to `~/.config/docker/`
-- Note: Docker Desktop re-creates `~/.docker/` on launch; the directory will persist but config will be read from the XDG path
+### ~~Add Docker config redirect~~ — COMPLETED 2026-06-08
+- Added `DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"` to `encrypted_dot_zshenv.tmpl`.
+- `~/.config/docker/` was already the active config location (identical to `~/.docker/`).
+- Note: Docker Desktop re-creates `~/.docker/` on launch; the directory persists but CLI uses the XDG path.
 
-### Relocate Gem data
-- Add `export GEM_HOME="$XDG_DATA_HOME/gem"` to `dot_zshenv.tmpl`
-- Add `export GEM_PATH="$XDG_DATA_HOME/gem"` to `dot_zshenv.tmpl`
-- Add `$GEM_HOME/bin` to `PATH`
-- Move `~/.gem/` → `~/.local/share/gem/`
+### ~~Relocate Gem data~~ — COMPLETED 2026-06-08
+- Added `GEM_HOME`, `GEM_PATH` to `encrypted_dot_zshenv.tmpl`; added `$GEM_HOME/bin` to `PATH`; moved `~/.gem/` → `~/.local/share/gem/`.
 
 ### Relocate Ollama
 - Add `export OLLAMA_HOME="$XDG_DATA_HOME/ollama"` to `dot_zshenv.tmpl`
@@ -82,10 +73,6 @@ or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
 ### Unmanaged .config/ subdirs to evaluate for chezmoi tracking
 - `.config/bundle`, `.config/colima`, `.config/composer`, `.config/docker`, `.config/fish`, `.config/gem`, `.config/git/ignore`, `.config/jiratui`, `.config/psysh`, `.config/rails-mcp`, `.config/uv`, `.config/vim/.netrwhist`, `.config/wtf`
 - Zed custom themes: `.config/zed/themes/catppuccin-blur.json`, `.config/zed/themes/dna.json` — consider `chezmoi add`
-
-### Delete corrupted filename
-- File: `~/.config/zsh/leoprado@LM-CGH-40543766 ~ % brew instal` (a terminal line accidentally saved as a filename)
-- Safe to `rm` directly
 
 ### gh auth persistence for DNA account
 - `gh auth switch -u DNA` does not persist across shell invocations
