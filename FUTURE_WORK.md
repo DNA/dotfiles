@@ -11,10 +11,10 @@
 
 ## Low Priority — Minor Hygiene
 
-### ~~Atuin daemon logs~~ — COMPLETED 2026-06-08
-- `daemon.log_path` is NOT a real config option in atuin v18.16.1; logs go to `~/.atuin/logs/` and are hardcoded.
-- Workaround applied: `~/.atuin` is now a symlink → `~/.local/state/atuin/` so logs live in the XDG state dir.
-- The daemon socket was already at the correct XDG location (`~/.local/share/atuin/atuin.sock`).
+### ~~Atuin daemon logs~~ — COMPLETED 2026-06-08 (revised 2026-06-08)
+- Proper fix: `[logs] dir = "~/.local/state/atuin/logs"` added to `~/.config/atuin/config.toml`.
+- `~/.atuin` symlink workaround was removed; atuin now writes logs directly to XDG state dir via config.
+- `config.toml` is now tracked in chezmoi as `dot_config/atuin/config.toml`.
 
 ### ~~zcompdump location~~ — COMPLETED 2026-06-08
 - Updated `dot_config/zsh/dot_zshrc` to use `compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"`.

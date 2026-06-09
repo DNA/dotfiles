@@ -282,6 +282,9 @@ name = "catppuccin-mocha-red"
 ## Boolean, true or false. If unset, left up to the theme manager.
 debug = true
 
+[logs]
+dir = "~/.local/state/atuin/logs"
+
 [search]
 ## The list of enabled filter modes, in order of priority.
 ## The "workspace" mode is skipped when not in a workspace or workspaces = false.
