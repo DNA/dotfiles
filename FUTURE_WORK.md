@@ -1,46 +1,6 @@
 # Future Work
 
-## Encryption & Privacy Audit — COMPLETED 2026-06-07
-
-**Audit result: repo is clean. No encryption or private-repo migration needed.**
-
-All `private_*` files were inspected. No API keys, auth tokens, PEM-encoded keys,
-or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
-`aws/credentials`.
-
-### Disposition of `private_` prefixes
-
-**Kept** (permission-sensitive even if currently credential-free):
-- `dot_config/npm/private_npmrc.tmpl` — npm registry config; may hold auth tokens in future
-- `dot_config/aws/private_config.tmpl` — AWS config; credentials may be added later
-- `dot_config/gh/private_config.yml.tmpl` — gh CLI; stores OAuth tokens
-- `dot_config/gh/private_hosts.yml.tmpl` — gh CLI hosts; stores OAuth tokens
-
-**Removed** (no sensitive content, no future credential risk):
-- `dot_config/zed/settings.json` (was `private_settings.json`) — editor prefs only
-- `dot_config/karabiner/karabiner.json` (was `private_karabiner/private_karabiner.json`) — keyboard remapping only
-
----
-
 ## Medium Priority — $HOME Cleanup
-
-### ~~Delete legacy shell files~~ — COMPLETED 2026-06-08
-- Deleted `~/.bash_profile` and `~/.profile`; all content was already covered by `encrypted_dot_zshenv.tmpl`.
-
-### ~~Relocate Cargo + Rustup~~ — COMPLETED 2026-06-08
-- Added `CARGO_HOME`, `RUSTUP_HOME` to `encrypted_dot_zshenv.tmpl`; moved dirs to `~/.local/share/`; added `$CARGO_HOME/bin` to `PATH`.
-
-### ~~Relocate Bun~~ — RESOLVED 2026-06-08
-- Bun is managed by mise (not a native install); `~/.bun/` was empty and removed.
-- Fixed a bug: wrong `PATH="$XDG_CACHE_HOME/.bun/bin:$PATH"` line in zshenv was removed.
-
-### ~~Add Docker config redirect~~ — COMPLETED 2026-06-08
-- Added `DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"` to `encrypted_dot_zshenv.tmpl`.
-- `~/.config/docker/` was already the active config location (identical to `~/.docker/`).
-- Note: Docker Desktop re-creates `~/.docker/` on launch; the directory persists but CLI uses the XDG path.
-
-### ~~Relocate Gem data~~ — COMPLETED 2026-06-08
-- Added `GEM_HOME`, `GEM_PATH` to `encrypted_dot_zshenv.tmpl`; added `$GEM_HOME/bin` to `PATH`; moved `~/.gem/` → `~/.local/share/gem/`.
 
 ### Relocate Ollama
 - Add `export OLLAMA_HOME="$XDG_DATA_HOME/ollama"` to `dot_zshenv.tmpl`
@@ -51,13 +11,14 @@ or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
 
 ## Low Priority — Minor Hygiene
 
-### Atuin daemon logs
-- Set `daemon.log_path` in `~/.config/atuin/config.toml` to `~/.local/state/atuin/`
-- Remove `~/.atuin/` once logs rotate out
+### ~~Atuin daemon logs~~ — COMPLETED 2026-06-08
+- `daemon.log_path` is NOT a real config option in atuin v18.16.1; logs go to `~/.atuin/logs/` and are hardcoded.
+- Workaround applied: `~/.atuin` is now a symlink → `~/.local/state/atuin/` so logs live in the XDG state dir.
+- The daemon socket was already at the correct XDG location (`~/.local/share/atuin/atuin.sock`).
 
-### zcompdump location
-- Pass `-d "$XDG_CACHE_HOME/zsh/zcompdump"` to `compinit` in `~/.config/zsh/.zshrc`
-- Moves zcompdump out of config dir and into cache where it belongs
+### ~~zcompdump location~~ — COMPLETED 2026-06-08
+- Updated `dot_config/zsh/dot_zshrc` to use `compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"`.
+- Old dump at `~/.config/zsh/.zcompdump` was removed; new location is `~/.cache/zsh/zcompdump`.
 
 ### Add hardcoded dirs to .chezmoiignore
 - `.vscode/`
@@ -74,6 +35,11 @@ or passwords were found. The `.chezmoiignore` correctly excludes `.ssh/` and
 - `.config/bundle`, `.config/colima`, `.config/composer`, `.config/docker`, `.config/fish`, `.config/gem`, `.config/git/ignore`, `.config/jiratui`, `.config/psysh`, `.config/rails-mcp`, `.config/uv`, `.config/vim/.netrwhist`, `.config/wtf`
 - Zed custom themes: `.config/zed/themes/catppuccin-blur.json`, `.config/zed/themes/dna.json` — consider `chezmoi add`
 
-### gh auth persistence for DNA account
-- `gh auth switch -u DNA` does not persist across shell invocations
-- Configure a credential helper or store DNA's token for the `DNA/dotfiles` remote specifically so future `git push` operations don't require manual switching
+### ~~gh auth persistence for DNA account~~ — COMPLETED 2026-06-08
+- Set a local credential helper in the dotfiles repo's `.git/config` (not tracked by chezmoi):
+  ```
+  git config credential.helper ''
+  git config --add credential.helper '!/bin/bash -c "echo username=DNA; echo password=$(gh auth token --user DNA 2>/dev/null)"'
+  ```
+- Pushes now authenticate as DNA without requiring `gh auth switch`.
+- **After a fresh clone**, re-run the two `git config` commands above inside `~/.local/share/chezmoi/`.
