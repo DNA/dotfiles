@@ -12,6 +12,7 @@
 .claude.json
 .claude.json.backup
 .codex
+.config/rails-mcp
 
 # Ignore MacOS files
 .CFUserTextEncoding
